@@ -30,15 +30,15 @@ public class ToUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("请重新登陆！");//.append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		System.out.println("to update page success");
+		    request.setCharacterEncoding("UTF-8");
+		    System.out.println("to update page success");
 		    ServletContext sc = getServletContext();  
 			RequestDispatcher rd = null;   
 			String id = request.getParameter("id");
@@ -46,7 +46,7 @@ public class ToUpdateServlet extends HttpServlet {
 			String salePrice = request.getParameter("salePrice");
 			String mark = request.getParameter("mark");
 			
-			System.out.println("id = "+id + 
+			System.out.println(" to update servlet id = "+id + 
 								" inPrice = "+inPrice+
 								" salePrice = "+salePrice+
 								" mark = "+mark

@@ -64,6 +64,7 @@ public class InfoUtil {
 				hashMap.put("mark", markout);
 				
 				System.out.println(
+						"mysql output = "+
 						"id:"+idout+
 						" inprice:"+inPriceout+
 						" salePriceout:"+salePriceout+

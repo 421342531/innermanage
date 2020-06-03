@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import data.InfoUtil;
+import data.InpriceTongji;
+import data.OutpriceTongji;
 
 /**
  * Servlet implementation class refreshServlet
@@ -32,7 +34,7 @@ public class refreshServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("请重新登陆！");//.append(request.getContextPath());
 	}
 
 	/**
@@ -42,6 +44,12 @@ public class refreshServlet extends HttpServlet {
 		System.out.println("refresh success");
 	    ServletContext sc = getServletContext();  
 		RequestDispatcher rd = null;   
+		
+		request.setAttribute("inPriceTongji", 
+				InpriceTongji.getProductInfo());//进价统计
+		request.setAttribute("outPriceTongji", 
+				OutpriceTongji.getProductInfo());//售价统计
+		
 		request.setAttribute("preAction", "2");//0:update 1:delete  2:refersh
 		request.setAttribute("list", InfoUtil.getProductInfo());//获取商品信息
 		rd = sc.getRequestDispatcher("/main.jsp"); //定向的页面   

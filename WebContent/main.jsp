@@ -12,9 +12,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
 <%
 	String preAction = (String)request.getAttribute("preAction");
     List<Map<String,String>> list = (List<Map<String,String>>)request.getAttribute("list");
+    
+    
+    int arrayinprice[] = (int[])request.getAttribute("inPriceTongji");//进价集合
+    int arraysaleprice[] = (int[])request.getAttribute("outPriceTongji");//进价集合  
 %>
 <title>欢迎来到商品管理页面!</title>
 <style>
@@ -40,6 +45,8 @@ text-decoration:underline;
 
 text-decoration:underline;
 }
+
+
 
 </style>
 <script type="text/javascript">
@@ -89,6 +96,9 @@ function doRefresh(){
 function doExit(){
 	document.exitForm.submit();
 }
+function doDownload(){
+	document.downloadForm.submit();
+}
 
 </script>
 </head>
@@ -130,14 +140,78 @@ for(Map map:list){ index++;%>
 <%} %>
 </table>
 	<br><br>
-	<input type="button" value="刷 新" style="height:60px;width:100px;" onclick="doRefresh()" />
+	<input id ="freshButton" type="button" value="刷 新" style="height:80px;width:120px " onclick="doRefresh()" />
+	<input id ="freshButton" type="button" value="导出到excel" style="height:80px;width:120px " onclick="doDownload()" />
 		<input id ="back" type ="button"
 		 value = "退  出 " style= "height:80px;width:120px " 
 		 		 onclick="doExit()" >
 </center>
-
-	
-
+<div id="main" style="width: 600px;height:400px;">echarts.js</div>
+<script type="text/javascript">
+  // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+ 
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '进价价格区间图'
+            },
+            tooltip: {},
+            legend: {
+                data:['数量']
+            },
+            xAxis: {
+                data: ["0～10元","10～20元","20～50","50～100","100以上"]
+            },
+            yAxis: {},
+            series: [{
+            	barWidth :30,
+                name: '数量',
+                type: 'bar',
+                data: ['<%=arrayinprice[0]%>',
+                		'<%=arrayinprice[1]%>', 
+                			'<%=arrayinprice[2]%>', 
+                				'<%=arrayinprice[3]%>', 
+                					'<%=arrayinprice[4]%>']
+            }]
+        };
+ 
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+<div id="main1" style="width: 600px;height:400px;">echarts.js</div>
+<script type="text/javascript">
+  // 基于准备好的dom，初始化echarts实例
+        var myChart1 = echarts.init(document.getElementById('main1'));
+ 
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '售价价格区间图'
+            },
+            tooltip: {},
+            legend: {
+                data:['数量']
+            },
+            xAxis: {
+                data: ["0～10元","10～20元","20～50","50～100","100以上"]
+            },
+            yAxis: {},
+            series: [{
+            	barWidth :30,
+                name: '数量',
+                type: 'bar',
+                data: ['<%=arraysaleprice[0]%>',
+                		'<%=arraysaleprice[1]%>', 
+                			'<%=arraysaleprice[2]%>', 
+                				'<%=arraysaleprice[3]%>', 
+                					'<%=arraysaleprice[4]%>']
+            }]
+        };
+ 
+        // 使用刚指定的配置项和数据显示图表。
+        myChart1.setOption(option);
+    </script>
 <form id="toUpdatePage" class="form-signin" role="form" method="post" action="ToUpdateServlet">
 <input type="hidden" name="id"  value="">
 <input type="hidden" name="inPrice"  value="">
@@ -165,6 +239,15 @@ for(Map map:list){ index++;%>
 <input type="hidden" name="salePrice"  value="">
 <input type="hidden" name="mark"  value="">
 </form>
+
+<form name = "downloadForm" class="form-signin" role="form" method="post" action="DownloadServlet">
+<input type="hidden" name="id"  value="">
+<input type="hidden" name="inPrice"  value="">
+<input type="hidden" name="salePrice"  value="">
+<input type="hidden" name="mark"  value="">
+</form>
+
+
 
 </body>
 </html>

@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import data.DeleteSQl;
 import data.InfoUtil;
+import data.InpriceTongji;
+import data.OutpriceTongji;
 
 /**
  * Servlet implementation class DeleteSubmitServlet
@@ -34,7 +36,7 @@ public class DeleteSubmitServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("请重新登陆！");//.append(request.getContextPath());
 	}
 
 	/**
@@ -69,6 +71,12 @@ public class DeleteSubmitServlet extends HttpServlet {
 		  ServletContext sc = getServletContext();  
 			RequestDispatcher rd = null;   
 			// 再重新查询一遍
+			
+			request.setAttribute("inPriceTongji", 
+					InpriceTongji.getProductInfo());//进价统计
+			request.setAttribute("outPriceTongji", 
+					OutpriceTongji.getProductInfo());//售价统计
+			
 			request.setAttribute("list", InfoUtil.getProductInfo());//获取商品信息
 			request.setAttribute("preAction", "1");//0:update 1:delete  2:refersh
 			rd = sc.getRequestDispatcher("/main.jsp"); //定向的页面   

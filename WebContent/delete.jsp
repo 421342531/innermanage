@@ -68,6 +68,7 @@ function doSubmit(){
 	<td><%=mark%></td>
 </tr>
 </table>
+<br><br>
 	<input id ="submitButton" type ="button" 
 	value = "确认删除" style= "height:80px;width:120px " onclick="doSubmit()">
 	<input id ="back" type ="button"
