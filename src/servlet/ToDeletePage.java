@@ -30,7 +30,11 @@ public class ToDeletePage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("请重新登陆！");//.append(request.getContextPath());
+		ServletContext sc = getServletContext();  
+		RequestDispatcher rd = null;   
+		
+		rd = sc.getRequestDispatcher("/index.jsp"); //定向的页面   
+		rd.forward(request, response);
 	}
 
 	/**
@@ -39,6 +43,7 @@ public class ToDeletePage extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println(" start to delete");
+		request.setCharacterEncoding("GB2312");
 		  ServletContext sc = getServletContext();  
 			RequestDispatcher rd = null;   
 			String id = request.getParameter("id");

@@ -30,7 +30,13 @@ public class ToUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("请重新登陆！");//.append(request.getContextPath());
+		//response.getWriter().append(" please to login...");//.append(request.getContextPath());
+		ServletContext sc = getServletContext();  
+		RequestDispatcher rd = null;   
+		
+		rd = sc.getRequestDispatcher("/index.jsp"); //定向的页面   
+		rd.forward(request, response); 
+	
 	}
 
 	/**

@@ -50,9 +50,9 @@ public class UpdateSql {
 				
 				throws ClassNotFoundException, SQLException {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-		 	System.out.println("Success loading Mysql Driver!");
+		 	System.out.println("---888--start to update Success loading Mysql Driver!");
 		 	Connection connect = DriverManager.getConnection(
-					 "jdbc:mysql://localhost:3306/mysql","root","nbcb,111");
+					 "jdbc:mysql://localhost:3306/mysql?characterEncoding=utf8","root","nbcb,111");
 		 	PreparedStatement statement ;//=connect.createStatement();
 		 //	Statement statement =connect.createStatement();
 			String sql=
@@ -68,7 +68,7 @@ public class UpdateSql {
 			statement.setString(2, salePrice);
 			statement.setString(3, mark);
 			statement.setString(4, updateId );
-			System.out.println("updateId "+updateId+" inPrice "+inPrice+" sql="+sql);
+			System.out.println("--------update---mark: "+mark);
 			//System.out.println("updateId "+updateId+" inPrice "+inPrice+" sql="+sql);
 			int rr = statement.executeUpdate();// 更新成功条数 1为更新成功，0未更新
 					

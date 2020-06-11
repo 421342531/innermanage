@@ -39,7 +39,7 @@ public class WxINsertServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		// TODO Auto-generated method stub
-				response.setContentType("text/html;charset=utf-8");
+				request.setCharacterEncoding("GB2312");
 		        // 设置响应头允许ajax跨域访问
 		        response.setHeader("Access-Control-Allow-Origin", "*");
 		        // 星号表示所有的异域请求都可以接受
@@ -47,12 +47,13 @@ public class WxINsertServlet extends HttpServlet {
 		        String id = request.getParameter("id");
 		        String  test =request.getParameter("inPrice");
 		        String  test2 =request.getParameter("salePrice");
-		        String  test3 =request.getParameter("mark");
+		        String  test3 =new String(request.getParameter("mark").getBytes("iso-8859-1"),"utf-8");
+		        		
 
-		        System.out.println("wx post insertid = "+id);
-		        System.out.println("wx post insertinprice = "+test);
-		        System.out.println("wx post insertsaleprice = "+test2);
-		        System.out.println("wx post insertmark = "+test3);
+		        System.out.println("-----wx post insertid = "+id);
+		        System.out.println("-----wx post insertinprice = "+test);
+		        System.out.println("-----wx post insertsaleprice = "+test2);
+		        System.out.println("-----wx post insertmark ----------"+test3);
 		        
 		       // WxSingleInsert.insertProductInfo(id, test, test2, test3);
 		        

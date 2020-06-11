@@ -38,7 +38,7 @@ public class WxSingleInsert {
 				  }
 			 try {
 				Connection connect = DriverManager.getConnection(
-				 "jdbc:mysql://localhost:3306/mysql","root","nbcb,111");
+ "jdbc:mysql://localhost:3306/mysql?characterEncoding=utf8","root","nbcb,111");
 				//java这个空填写的是你自己设的密码
 				 
 				System.out.println("Success connect Mysql server!");

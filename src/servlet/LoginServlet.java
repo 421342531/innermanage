@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.Writer;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -10,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import data.InfoUtil;
 import data.InpriceTongji;
@@ -20,6 +20,7 @@ import data.OutpriceTongji;
  */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
+	//private Logger logger = Logger.getLogger(this.getClass().getName()); 
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -43,8 +44,9 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("GB2312");
 		System.out.println("post success");
+	//	logger.info("post success");
 		String password = request.getParameter("password");
 		System.out.println("password="+password);
 		if(password.equals("")||password==null){
