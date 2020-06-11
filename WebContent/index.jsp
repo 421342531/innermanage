@@ -13,7 +13,6 @@
 	if(alertPassword==null){
 		alertPassword = "false";
 	}
-	 System.out.println("alertPassword="+alertPassword);
 %>
 
 <style>
@@ -38,6 +37,33 @@
 {
 	background: url("images/back1.jpg") no-repeat;
 }
+#button
+{
+	width:280px;
+	border:none;
+	color:#FFFFFF!important;
+	background-color:#FF9000;
+	height:30px;
+	margin-top:10px;
+	border-radius:28px;
+	outline:0;
+	fontsizze:20px;
+
+}
+#password
+{
+	border:1px solid #ddd;
+	display:inline-block;
+	width:243px;
+	border-radius:4px;
+	position:relative;
+	padding-left:10px;
+	background-color:#FFFFFF;
+	overflow:hidden;
+
+
+
+}
 
 
 </style>
@@ -57,23 +83,44 @@ function doSubmit(){
 	}
 	document.submitForm.submit();
 }
+function datetime() {
+	 	var now = new Date();
+	 	document.getElementById("time").value = now.getFullYear() + "-"
+	 	+ (now.getMonth() + 1) + "-" + now.getDate();
+	 	document.getElementById("time").value += " " + now.getHours() + ":"
+	 	+ now.getMinutes() + ":" + now.getSeconds();
+		 }
+	 window.setInterval("datetime()", 1000);
 
 </script>
 <title>商品内部管理系统</title>
 </head>
 <body id ="bodyid" onload = init(); >
-
+<div>
+	<div style="width:30%; position:absolute; right:250px; top:0px;" >
+		<span> 当前时间:</span>
+			<input id="time" style="text-align: center;" />
+	</div>
+	<div style="width:30%; position:absolute; right:0px; top:0px; 
+					text-decoration: underline;" onclick="doSubmit()" >
+		账户中心
+	</div>
+</div>
 <center>
+
 <br><br><br><br><br>
 <h1 id ="para1" >请输入登陆密码 </h1>
-<form  name="submitForm" class="form-signin" role="form" method="post" action="LoginServlet">
-<h2 id ="para3">密 码 :  </a><input type="password" 
+<form  name="submitForm" class="form-signin" role="form" method="post" action="LoginServlet"/>
+
+
+<h2 id ="para3">密 码 :  </a>
+ <input type="password" placeholder="请输入密码"
 	style="height:30px;width:100px;" name = "password" id = "password" /></br></br>
-	<input id="button" type="button" value="提  交 " style="height:60px;width:100px;" onclick="doSubmit()" />
+	<input id="button" type="button" value="提  交 " plcaeholder="密码" style="height:60px;width:100px;" onclick="doSubmit()" />
 
 </center>
-</form>
-<div id="main" style="width: 600px;height:400px;">22</div>
+
+<div id="main" style="width: 600px;height:400px;display:none;"></div>
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
        // var myChart = echarts.init(dom, 'dark');

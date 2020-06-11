@@ -37,16 +37,19 @@ public class ToUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		    request.setCharacterEncoding("UTF-8");
+		    request.setCharacterEncoding("GB2312");
 		    System.out.println("to update page success");
 		    ServletContext sc = getServletContext();  
-			RequestDispatcher rd = null;   
+			RequestDispatcher rd = null; 
+			
 			String id = request.getParameter("id");
 			String inPrice = request.getParameter("inPrice");
 			String salePrice = request.getParameter("salePrice");
+			//String mark = new String(request.getParameter("mark").getBytes("iso-8859-1"),"utf-8");
 			String mark = request.getParameter("mark");
 			
-			System.out.println(" to update servlet id = "+id + 
+			
+			System.out.println(" to1 update servlet id = "+id + 
 								" inPrice = "+inPrice+
 								" salePrice = "+salePrice+
 								" mark = "+mark

@@ -19,14 +19,14 @@ import data.UpdateSql;
 /**
  * Servlet implementation class UpdateSubmitServlet
  */
-@WebServlet("/UpdateSubmitServlet")
-public class UpdateSubmitServlet extends HttpServlet {
+@WebServlet("/TongjiServlet")
+public class TongjiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateSubmitServlet() {
+    public TongjiServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,41 +44,19 @@ public class UpdateSubmitServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		request.setCharacterEncoding("GB2312");
-		String id = request.getParameter("id");
-		String inPrice = request.getParameter("inPrice");
-		String salePrice = request.getParameter("salePrice");
-		String mark = request.getParameter("mark");		
 		
-		
-		try {
-			//更新商品信息
-			UpdateSql.updateAllFunc(id, inPrice, salePrice, mark);
+		System.out.println("enter in tongji ");
+		request.setCharacterEncoding("UTF-8");
+		 ServletContext sc = getServletContext();  
+			RequestDispatcher rd = null;   
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}//updateSqlFunc
-		
-		System.out.println("确认更新信息："+"id = "+id + 
-				" inPrice = "+inPrice+
-				" salePrice = "+salePrice+
-				" mark = "+mark);
-		System.out.println("update  success");
-	    ServletContext sc = getServletContext();  
-		RequestDispatcher rd = null;   
-	
-		request.setAttribute("inPriceTongji", 
-				InpriceTongji.getProductInfo());//进价统计
-		request.setAttribute("outPriceTongji", 
-				OutpriceTongji.getProductInfo());//售价统计
-		
-		request.setAttribute("preAction", "0");//0:update 1:delete 
-		request.setAttribute("list", InfoUtil.getProductInfo());//获取商品信息
-		rd = sc.getRequestDispatcher("/main.jsp"); //定向的页面   
+			
+			request.setAttribute("inPriceTongji", 
+					InpriceTongji.getProductInfo());//进价统计
+			request.setAttribute("outPriceTongji", 
+					OutpriceTongji.getProductInfo());//售价统计
+			
+		rd = sc.getRequestDispatcher("/tongji.jsp"); //定向的页面   
 		rd.forward(request, response);   
 		return ;
 		

@@ -4,10 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 
 //统计售价的价格分布
@@ -68,7 +64,7 @@ public class OutpriceTongji {
 				while(rs.next()) {
 				
 				count[i]=rs.getInt(1);
-				System.out.println("count="+count[i]);
+				System.out.println("sale count="+count[i]);
 				}
 			 }
 			

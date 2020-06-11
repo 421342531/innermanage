@@ -14,12 +14,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
 <%
-	String preAction = (String)request.getAttribute("preAction");
-    List<Map<String,String>> list = (List<Map<String,String>>)request.getAttribute("list");
-    
-    
+	
     int arrayinprice[] = (int[])request.getAttribute("inPriceTongji");//进价集合
-    int arraysaleprice[] = (int[])request.getAttribute("outPriceTongji");//进价集合  
+    int arraysaleprice[] =arrayinprice; //售价集合  
 %>
 <title>欢迎来到商品管理页面!</title>
 <style>
@@ -72,7 +69,7 @@ text-decoration:underline;
 	border:none;
 	color:#FFFFFF!important;
 	background-color:#FF9000;
-	height:30px;
+	height:20px;
 	margin-top:10px;
 	border-radius:28px;
 	outline:0;
@@ -83,115 +80,29 @@ text-decoration:underline;
 
 </style>
 <script type="text/javascript">
-function init(){
-	//0:update 1:delete 2:refersh
-	if('<%=preAction%>'=="0"){
-		alert("更新成功！");
-		return ;
-	}
-	//0:update 1:delete 2:refersh
-	if('<%=preAction%>'=="1"){
-		alert("删除成功！");
-		return ;
-	}
-	//0:update 1:delete 2:refersh
-	if('<%=preAction%>'=="2"){
-		//alert("刷新成功！");
-		return ;
-	}else{
-		return ;
-	}
-	
-	
-}
-function update(index,id,inPrice,salePrice,mark){
-	
-	document.getElementById('toUpdatePage').id.value =id;
-	document.getElementById('toUpdatePage').inPrice.value =inPrice;
-	document.getElementById('toUpdatePage').salePrice.value =salePrice;
-	document.getElementById('toUpdatePage').mark.value =mark;
-	document.getElementById('toUpdatePage').submit();
-}
 
-function deleteInfo(index,id,inPrice,salePrice,mark){
-	document.getElementById('ToDeletePage').id.value =id;
-	document.getElementById('ToDeletePage').inPrice.value =inPrice;
-	document.getElementById('ToDeletePage').salePrice.value =salePrice;
-	document.getElementById('ToDeletePage').mark.value =mark;
-	document.getElementById('ToDeletePage').submit();
-}
 
 function doRefresh(){
-
-	//alert("refresh");
 	document.refreshForm.submit();
 }
 function doExit(){
 	document.exitForm.submit();
 }
-function doDownload(){
-	document.downloadForm.submit();
-}
 function doTongji(){
-	//alert("tongji");
 	document.TongjiForm.submit();
 }
-
+function dobackForm(){
+	document.backForm.submit();
+}
 
 
 </script>
 </head>
-<body onload="init()" style="background: url(images/back1.jpg)">
+<body style="background: url(images/back1.jpg)">
 <h1 id="para1">欢迎来到商品管理页面！</h1> 
-<center>
-<table id="tableMain" border="1px" cellspacing="0" width="500px"  >
-<thread>
-	<tr id =tableThread>
-		<td >序号</td>
-		<td  colspan = "4">二维码码号</td>
-		<td >进价</td>
-		<td >售价</td>
-		<td >备注</td>
-		<td >更新信息</td>
-		<td >删除商品</td>
-	</tr>
-</thread>
-<% 
-int index =0;
-for(Map map:list){ index++;%>
-<tbody>
-	<tr>
-    <td id ='<%=index%>'  ><%=index%> </td>
-	<td colspan = "4"  ><%= map.get("id")%> </td>
-	<td  ><%= map.get("inPrice")%> 元</td>
-	<td  ><%= map.get("salePrice")%> 元</td>
-	<td  ><%= map.get("mark")%></td>
-	<td  id ="blueButton"  onclick="update('<%=index %>',
-											'<%=map.get("id")%>',
-											'<%=map.get("inPrice")%>',
-											'<%=map.get("salePrice")%>',
-											'<%=map.get("mark")%>')
-											">点击更新</td>
-	<td  id ="redButton"  onclick="deleteInfo('<%=index %>',
-											'<%=map.get("id")%>',
-											'<%=map.get("inPrice")%>',
-											'<%=map.get("salePrice")%>',
-											'<%=map.get("mark")%>')
-											">点击删除</td>
-	</tr>
-</tbody>
-<%} %>
-</table>
-	<br><br>
-	<input id ="button" type="button" value="刷 新" style="height:80px;width:120px " onclick="doRefresh()" />
-	<input id ="button" type="button" value="查看价格区间" style="height:80px;width:120px " onclick="doTongji()" />
-	
-	<input id ="button" type="button" value="导出到excel" style="height:80px;width:120px " onclick="doDownload()" />
-		<input id ="button" type ="button"
-		 value = "退  出 " style= "height:80px;width:120px " 
-		 		 onclick="doExit()" >
-</center>
-<div id="main" style="width: 600px;height:400px;display:none;">echarts.js</div>
+<div>
+	<div id="main" style="width: 600px;height:400px;" >echarts.js</div>
+</div>
 <script type="text/javascript">
   // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
@@ -223,8 +134,7 @@ for(Map map:list){ index++;%>
  
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
-    </script>
-<div id="main1" style="width: 600px;height:400px;display:none;" >echarts.js</div>
+</script>
 <script type="text/javascript">
   // 基于准备好的dom，初始化echarts实例
         var myChart1 = echarts.init(document.getElementById('main1'));
@@ -257,6 +167,18 @@ for(Map map:list){ index++;%>
         // 使用刚指定的配置项和数据显示图表。
         myChart1.setOption(option);
     </script>
+<center>
+	<div id="main1" style="width: 600px;height:400px;display:none;">请刷新！</div>
+</center>
+<center>
+
+	<input id ="button" type="button" value="刷 新" style="height:80px;width:120px " onclick="doRefresh()" />
+	<input id ="button" type="button" value="返 回" style="height:80px;width:120px " onclick="dobackForm()" />
+	
+	<input id ="button" type ="button"
+		 value = "退  出 " style= "height:80px;width:120px " 
+		 		 onclick="doExit()" >
+</center>
 <form id="toUpdatePage" class="form-signin" role="form" method="post" action="ToUpdateServlet">
 <input type="hidden" name="id"  value="">
 <input type="hidden" name="inPrice"  value="">
@@ -271,7 +193,7 @@ for(Map map:list){ index++;%>
 <input type="hidden" name="mark"  value="">
 </form>
 
-<form name = "refreshForm" class="form-signin" role="form" method="post" action="refreshServlet">
+<form name = "refreshForm" class="form-signin" role="form" method="post" action="TongjiServlet">
 <input type="hidden" name="id"  value="">
 <input type="hidden" name="inPrice"  value="">
 <input type="hidden" name="salePrice"  value="">
@@ -299,6 +221,8 @@ for(Map map:list){ index++;%>
 <input type="hidden" name="mark"  value="">
 </form>
 
+<form  name="backForm" class="form-signin" role="form" method="post" action="refreshServlet">
+</form>
 
 
 

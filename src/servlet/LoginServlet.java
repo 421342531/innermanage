@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.Writer;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -34,7 +35,8 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("请重新登陆！");//.append(request.getContextPath());
+    	
+        response.getWriter().append("请重新登陆！");//.append(request.getContextPath());
 	}
 
 	/**
@@ -44,6 +46,7 @@ public class LoginServlet extends HttpServlet {
 	    request.setCharacterEncoding("UTF-8");
 		System.out.println("post success");
 		String password = request.getParameter("password");
+		System.out.println("password="+password);
 		if(password.equals("")||password==null){
 			response.getWriter().append("please input password");
 			return ;

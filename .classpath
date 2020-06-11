@@ -16,5 +16,11 @@
 	<classpathentry kind="lib" path="/Users/apple/Downloads/poi-3.17/poi-ooxml-3.17.jar"/>
 	<classpathentry kind="lib" path="/Users/apple/Downloads/poi-3.17/poi-ooxml-schemas-3.17.jar"/>
 	<classpathentry kind="lib" path="/Users/apple/Downloads/poi-3.17/poi-scratchpad-3.17.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Downloads/json-lib/commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Downloads/json-lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Downloads/json-lib/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Downloads/json-lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Downloads/json-lib/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Downloads/json-lib/json-lib-2.4-jdk15.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
